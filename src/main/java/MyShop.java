@@ -8,7 +8,7 @@ public class MyShop {
         String url="jdbc:mysql://localhost:3306/demo";
         String user="root";
         String password="123456";
-        Connection conn;
+        Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -17,9 +17,18 @@ public class MyShop {
         try {
             conn= DriverManager.getConnection(url,user,password);
             System.out.println(conn);
-            conn.close();
+
         } catch (SQLException troubles) {
             troubles.printStackTrace();
+        }finally {
+            if(conn!=null) {
+                try {
+                    conn.close();
+                    System.out.println("connect close.");
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
         }
     }
 }
