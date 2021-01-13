@@ -1,8 +1,15 @@
 import javax.xml.soap.Text;
 import java.sql.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class MyShop {
     public static void main(String[] args) {
+
+        ItemDaoImpl itemDao=new ItemDaoImpl();
+        List<Item> items=itemDao.findAll();
+        System.out.println(items);
+        /*
         Connection conn = DBUtil.getConnection();
 
         System.out.println(conn);
@@ -12,7 +19,16 @@ public class MyShop {
 
         if (conn != null) {
             try {
+                String insert = "insert into items (name,price,qty,info,create_date) values ('i phone充電器3',390,10,'oem','2020-08-25');";
+                String insert2 = "insert into customers (name,password,phone) values ('Tony','123456','0000000000');";
+                String update = "update items set info='無備註' where info is null";
                 statement = conn.createStatement();
+                int result = statement.executeUpdate(update);
+                if (result > 0) {
+                    System.out.println("insert");
+                } else {
+                    System.out.println("fail");
+                }
                 resultSet = statement.executeQuery("select * from items;");
 
 
@@ -34,7 +50,7 @@ public class MyShop {
         }
         DBUtil.close(conn);
 
-
+*/
 
         /*
         String url="jdbc:mysql://localhost:3306/demo";

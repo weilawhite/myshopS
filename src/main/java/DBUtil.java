@@ -11,7 +11,7 @@ public class DBUtil {
         }
     }
 
-    static String url = "jdbc:mysql://localhost:3306/myshop";
+    static String url = "jdbc:mysql://localhost:3306/myshop?characterEncoding=UTF-8";
     static String user = "root";
     static String password = "123456";
 
