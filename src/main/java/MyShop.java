@@ -1,10 +1,42 @@
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import javax.xml.soap.Text;
+import java.sql.*;
 
 public class MyShop {
     public static void main(String[] args) {
+        Connection conn = DBUtil.getConnection();
+
+        System.out.println(conn);
+
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        if (conn != null) {
+            try {
+                statement = conn.createStatement();
+                resultSet = statement.executeQuery("select * from items;");
+
+
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    double price = resultSet.getDouble("price");
+                    int qty = resultSet.getInt("qty");
+                    Date create_date = resultSet.getDate("create_date");
+                    String info = resultSet.getString("info");
+
+                    System.out.println(id + "," + name + "," + price + "," + qty + "," + create_date + "," + info);
+
+
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        DBUtil.close(conn);
+
+
+
+        /*
         String url="jdbc:mysql://localhost:3306/demo";
         String user="root";
         String password="123456";
@@ -29,6 +61,6 @@ public class MyShop {
                     throwables.printStackTrace();
                 }
             }
-        }
+        }*/
     }
 }
