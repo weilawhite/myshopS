@@ -1,9 +1,15 @@
-import view.ItemPage;
+package view;
 
-public class MyShop {
-    public static void main(String[] args) {
-        new ItemPage().MainPage();
-/*
+import entity.Item;
+import impl.ItemDaoImpl;
+import util.Tools;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class ItemPage {
+    public  void MainPage() {
+
         ItemDaoImpl itemDao = new ItemDaoImpl();
         //itemDao.insert(new entity.Item("iphone12 plus 2",24999,2,util.Tools.strToDate("2021-1-18"),"123"));
         while (true) {
@@ -20,8 +26,9 @@ public class MyShop {
                     System.out.println(item);
                 }
             } else if (choice == 2) {
-                System.out.println("輸入名稱:");
+                System.out.println("輸入名稱:(-1 to exit)");
                 String name = scanner.nextLine();
+                if(name.equals("-1")){break;}
                 System.out.println("輸入價格:");
                 Double price = scanner.nextDouble();
                 System.out.println("輸入數量:");
@@ -29,6 +36,9 @@ public class MyShop {
                 scanner.nextLine();
                 System.out.println("輸入日期:(2021-1-1)");
                 String date = scanner.nextLine();
+                if(date.equals("")){
+                    date=Tools.getToday();
+                }
                 System.out.println("輸入備註:");
                 String info = scanner.nextLine();
 
@@ -36,8 +46,9 @@ public class MyShop {
             } else if (choice == 4) {
                 break;
             }
+            Tools.pressAnyKey();
         }
-*/
+
 
     }
 }
